@@ -1,0 +1,160 @@
+Accion Torneo Es
+//Ambiente
+    Equipo = Registro
+        NEquipo: Alfanumerico
+        Ciudad: Alfanumerico
+        Parti: Entero
+        Vic: Entero
+        Emp: Entero
+        Derr: Entero
+        GolFav: Entero
+        GolCon: Entero
+        DifGol: Entero
+        TarjR: Entero
+        TarjA: Entero
+        PTS: Entero
+    FinRegistro
+
+    Equipos: Arreglo de Equipo
+
+    Nuevo: Equipo
+    Opcion: Entero
+    Nombre1, Nombre2: Alfanumerico
+    Pos1, Pos2: Entero
+    Posicion: Entero
+    Goles1, Goles2: Entero
+    Amarillas1, Amarillas2: Entero
+    Rojas1, Rojas2: Entero
+    GFavor, GContra: Entero
+    Amarillas, Rojas: Entero
+    i: Entero
+
+    Funcion BuscarEquipo(Nombre: Alfanumerico): Entero Es
+
+        Posicion := -1
+        i := 0
+        Mientras i < Cantidad(Equipos) Y Posicion = -1 Hacer
+            Si Equipos[i].NEquipo = Nombre Entonces
+                Posicion := i
+            FinSi
+            i := i + 1
+        FinMientras
+        BuscarEquipo := Posicion
+    FinFuncion
+
+    Procedimiento RegistrarEquipo Es
+        Escribir("Nombre del equipo:")
+        Leer(Nuevo.NEquipo)
+        Si BuscarEquipo(Nuevo.NEquipo) <> -1 Entonces
+            Escribir("Ese equipo ya existe.")
+        Sino
+            Escribir("Ciudad:")
+            Leer(Nuevo.Ciudad)
+            Nuevo.Parti := 0
+            Nuevo.Vic := 0
+            Nuevo.Emp := 0
+            Nuevo.Derr := 0
+            Nuevo.GolFav := 0
+            Nuevo.GolCon := 0
+            Nuevo.DifGol := 0
+            Nuevo.TarjA := 0
+            Nuevo.TarjR := 0
+            Nuevo.PTS := 0
+            Agregar Nuevo a Equipos
+            Escribir("Equipo registrado correctamente.")
+        FinSi
+    FinProcedimiento
+
+    Procedimiento MostrarEquipos Es
+        Si Cantidad(Equipos) = 0 Entonces
+            Escribir("No hay equipos registrados.")
+        Sino
+            Para i := 0 Hasta Cantidad(Equipos)-1 Hacer
+                Escribir(i+1, "-", Equipos[i].NEquipo, "-", Equipos[i].Ciudad)
+            FinPara
+        FinSi
+    FinProcedimiento
+
+    Procedimiento ActualizarEquipo(Posicion: Entero, GFavor: Entero, GContra: Entero, Amarillas: Entero, Rojas: Entero) Es
+
+        Equipos[Posicion].Parti := Equipos[Posicion].Parti + 1
+        Equipos[Posicion].GolFav := Equipos[Posicion].GolFav + GFavor
+        Equipos[Posicion].GolCon := Equipos[Posicion].GolCon + GContra
+        Equipos[Posicion].DifGol := Equipos[Posicion].GolFav - Equipos[Posicion].GolCon
+        Equipos[Posicion].TarjA := Equipos[Posicion].TarjA + Amarillas
+        Equipos[Posicion].TarjR := Equipos[Posicion].TarjR + Rojas
+
+        Si GFavor > GContra Entonces
+            Equipos[Posicion].Vic := Equipos[Posicion].Vic + 1
+            Equipos[Posicion].PTS := Equipos[Posicion].PTS + 3
+        Sino
+            Si GFavor = GContra Entonces
+                Equipos[Posicion].Emp := Equipos[Posicion].Emp + 1
+                Equipos[Posicion].PTS := Equipos[Posicion].PTS + 1
+            Sino
+                Equipos[Posicion].Derr := Equipos[Posicion].Derr + 1
+            FinSi
+        FinSi
+    FinProcedimiento
+
+    Procedimiento RegistrarPartido Es
+        Si Cantidad(Equipos) < 2 Entonces
+           Escribir("Deben existir al menos 2 equipos para registrar un partido.")
+        Sino
+            MostrarEquipos()
+            Escribir("Primer equipo:")
+            Leer(Nombre1)
+            Escribir("Segundo equipo:")
+            Leer(Nombre2)
+            Pos1 := BuscarEquipo(Nombre1)
+            Pos2 := BuscarEquipo(Nombre2)
+
+            Si Pos1 = -1 O Pos2 = -1 Entonces
+                Escribir("Equipo inexistente.")
+            Sino
+                Si Pos1 = Pos2 Entonces
+                    Escribir("No puede jugar contra si mismo.")
+                Sino
+                    Escribir("Goles equipo 1:")
+                    Leer(Goles1)
+                    Escribir("Tarjetas amarillas equipo 1:")
+                    Leer(Amarillas1)
+                    Escribir("Tarjetas rojas equipo 1:")
+                    Leer(Rojas1)
+                    Escribir("Goles equipo 2:")
+                    Leer(Goles2)
+                    Escribir("Tarjetas amarillas equipo 2:")
+                    Leer(Amarillas2)
+                    Escribir("Tarjetas rojas equipo 2:")
+                    Leer(Rojas2)
+
+                    ActualizarEquipo(Pos1, Goles1, Goles2, Amarillas1, Rojas1)
+                    ActualizarEquipo(Pos2, Goles2, Goles1, Amarillas2, Rojas2)
+                    Escribir("Partido registrado correctamente.")
+                FinSi
+            FinSi
+        FinSi
+    FinProcedimiento
+
+    Procedimiento BuscarDatosEquipo Es
+        Escribir("Nombre del equipo:")
+        Leer(Nombre1)
+        Pos1 := BuscarEquipo(Nombre1)
+
+        Si Pos1 = -1 Entonces
+            Escribir("Equipo inexistente.")
+        Sino
+            Escribir("Equipo:", Equipos[Pos1].NEquipo)
+            Escribir("Ciudad:", Equipos[Pos1].Ciudad)
+            Escribir("Partidos Jugados:", Equipos[Pos1].Parti)
+            Escribir("Victorias:", Equipos[Pos1].Vic)
+            Escribir("Empates:", Equipos[Pos1].Emp)
+            Escribir("Derrotas:", Equipos[Pos1].Derr)
+            Escribir("Gol a Favor:", Equipos[Pos1].GolFav)
+            Escribir("Gol en Contra:", Equipos[Pos1].GolCon)
+            Escribir("Diferencia de Goles:", Equipos[Pos1].DifGol)
+            Escribir("Tarjetas Amarillas:", Equipos[Pos1].TarjA)
+            Escribir("Tarjetas Rojas:", Equipos[Pos1].TarjR)
+            Escribir("PTS:", Equipos[Pos1].PTS)
+        FinSi
+    FinProcedimiento

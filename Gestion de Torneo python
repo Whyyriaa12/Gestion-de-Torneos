@@ -1,0 +1,36 @@
+Equipos = []
+
+def BuscarEquipo(Nombre):
+    Posicion = -1
+
+    for i in range(len(Equipos)):
+        if Equipos[i]["NEquipo"] == Nombre:
+            Posicion = i
+    return Posicion
+
+def RegistrarEquipo():
+    Nuevo = {}
+
+    Nuevo["NEquipo"] = input("Nombre del equipo: ")
+    Nuevo["Ciudad"] = input("Ciudad: ")
+    Nuevo["Parti"] = 0
+    Nuevo["Vic"] = 0
+    Nuevo["Emp"] = 0
+    Nuevo["Derr"] = 0
+    Nuevo["GolFav"] = 0
+    Nuevo["GolCon"] = 0
+    Nuevo["DifGol"] = 0
+    Nuevo["TarjA"] = 0
+    Nuevo["TarjR"] = 0
+    Nuevo["PTS"] = 0
+    Equipos.append(Nuevo)
+    print("Equipo registrado.")
+
+def MostrarEquipos():
+    for i in range(len(Equipos)):
+        print(i + 1, Equipos[i]["NEquipo"])
+
+def ActualizarEquipo(Posicion, GFavor, GContra, Amarillas, Rojas):
+    Equipos[Posicion]["Parti"] = Equipos[Posicion]["Parti"] + 1
+    Equipos[Posicion]["GolFav"] = GFavor
+    Equipos[Posicion]["GolCon"] = GContra

@@ -158,3 +158,31 @@ Accion Torneo Es
             Escribir("PTS:", Equipos[Pos1].PTS)
         FinSi
     FinProcedimiento
+//Proceso
+
+    Opcion := 0
+
+    Mientras Opcion <> 5 Hacer
+        Escribir("GESTION DE TORNEOS")
+        Escribir("1. Registrar equipo")
+        Escribir("2. Mostrar equipos")
+        Escribir("3. Registrar partido")
+        Escribir("4. Buscar datos de equipo")
+        Escribir("5. Salir")
+        Leer(Opcion)
+        Segun Opcion Hacer
+            1:
+                RegistrarEquipo()
+            2:
+                MostrarEquipos()
+            3:
+                RegistrarPartido()
+            4:
+                BuscarDatosEquipo()
+            5:
+                Escribir("Gracias por usar el sistema.")
+            De Otro Modo:
+                Escribir("Opcion invalida.")
+        FinSegun
+    FinMientras
+FinAccion

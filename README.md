@@ -8,6 +8,8 @@
 
 ## Comision D
 
+https://youtu.be/efvC2DbhFQA
+
 ## Descripción del sistema
 
   Este programa consiste en un sistema de gestión de torneos de fútbol amateur que está desarrollado en Python y ejecutado por consola.
@@ -58,7 +60,3 @@ Las utilizamos para:
 - Mejorar la organización del código.
 
 Todas las sugerencias fueron analizadas, comprendidas y adaptadas por los integrantes del grupo antes de incorporarlas al código.
-
-# Link del video explicativo
-
-https://youtu.be/efvC2DbhFQA

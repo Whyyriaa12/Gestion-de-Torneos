@@ -47,7 +47,7 @@
 
   ## Uso de Inteligencia Artificial
 
-Utilizamos como apoyo las IAs de ChatGPT y Geminis.
+Utilizamos como apoyo las IAs de ChatGPT y Gemini.
 
 Las utilizamos para:
 

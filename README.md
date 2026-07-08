@@ -8,15 +8,38 @@ Integrantes
 
 Comision D
 
+Descripción del sistema
+
+  Este programa consiste en un sistema de gestión de torneos de fútbol amateur que está desarrollado en Python y ejecutado por consola.
+  El sistema permite administrar la información de los equipos participantes, registrar partidos y actualizar automáticamente las estadísticas del torneo.
+
 INSTRUCCIONES DE EJECUCION:
 
-1_ Descargar el programa python
+1. Descargar el programa python
 
-2_ Abrir el programa en VS Code o cualquier consola que acepte python.
+2. Abrir el programa en VS Code o cualquier consola que acepte python.
 
-2_ Se ejecuta el programa donde muestra el menú principal con distintas opciones, el usuario para empezar debe elegir la opción 1 del menú para registrar a los equipos.
+3. Se ejecuta el programa donde muestra el menú principal con distintas opciones, el usuario para empezar debe elegir la opción 1 del menú para registrar a los equipos.
 
-3_ Ya registrados los equipos se registran los partidos con la opción 3 cargando los goles,tarjetas,etc.
+4. Ya registrados los equipos, el usuario debe registrar los partidos con la opción 3 cargando los goles,tarjetas,etc.
 
-4_ Una vez hecho eso, el usuario elige si quiere mostrar las estadísticas, los equipos, etc, o salir con la opción 7.
+5. Una vez hecho eso, el usuario elige si quiere mostrar las estadísticas, los equipos, etc, o salir con la opción 7.
 
+Funciones del programa: 
+    Registrar equipos.
+    Mostrar equipos registrados.
+    Registrar partidos.
+    Actualizar automáticamente:
+      Partidos jugados.
+      Victorias.
+      Empates.
+      Derrotas.
+      Goles a favor.
+      Goles en contra.
+      Diferencia de goles.
+      Tarjetas amarillas.
+      Tarjetas rojas.
+       Puntos.
+    Consultar la información de un equipo.
+    Mostrar la tabla de posiciones.
+    Mostrar estadísticas generales del torne

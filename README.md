@@ -44,3 +44,17 @@
 - Consultar la información de un equipo.
 - Mostrar la tabla de posiciones.
 - Mostrar estadísticas generales del torneo.
+
+  ## Uso de Inteligencia Artificial
+
+Utilizamos como apoyo las IAs de ChatGPT y Geminis.
+
+Las utilizamos para:
+
+- Resolver dudas sobre Python.
+- Proponer estructuras de programación.
+- Corregir errores en nuestro código.
+- Encontrar los problemas de algunas líneas.
+- Mejorar la organización del código.
+
+Todas las sugerencias fueron analizadas, comprendidas y adaptadas por los integrantes del grupo antes de incorporarlas al código.

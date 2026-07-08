@@ -261,7 +261,7 @@ def MostrarEstadisticas():
 
 def MostrarMenu():
     print("\n====================================")
-    print("          GESTION DE TORNEOS”)
+    print("          GESTION DE TORNEOS”")
     print("====================================")
     print("1. Registrar equipo")
     print("2. Mostrar equipos")

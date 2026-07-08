@@ -18,12 +18,17 @@ def pedir_entero(mensaje, minimo):
     numero = 0
 
     while not valido:
-        numero = int(input(mensaje))
 
-        if numero < minimo:
-            print("Error: el numero no puede ser menor que", minimo)
-        else:
-            valido = True
+        try:
+            numero = int(input(mensaje))
+
+            if numero < minimo:
+                print("Error: el numero no puede ser menor que", minimo)
+            else:
+                valido = True
+
+        except ValueError:
+            print("Error: debe ingresar un numero entero.")
 
     return numero
 
@@ -33,6 +38,7 @@ def BuscarEquipo(Nombre):
     i = 0
 
     while i < len(Equipos) and Posicion == -1:
+
         if Equipos[i]["NEquipo"] == Nombre:
             Posicion = i
 
@@ -93,8 +99,9 @@ def ActualizarEquipo(Posicion, GFavor, GContra, Amarillas, Rojas):
         Equipos[Posicion]["GolFav"] - Equipos[Posicion]["GolCon"]
     )
 
-    TarjetasAmarillasNuevas = Equipos[Posicion]["TarjA"] + Amarillas
-    TarjetasRojasNuevas = Equipos[Posicion]["TarjR"] + Rojas
+
+    Equipos[Posicion]["TarjA"] = Equipos[Posicion]["TarjA"] + Amarillas
+    Equipos[Posicion]["TarjR"] = Equipos[Posicion]["TarjR"] + Rojas
 
     if GFavor > GContra:
         Equipos[Posicion]["Vic"] = Equipos[Posicion]["Vic"] + 1
@@ -247,6 +254,7 @@ def MostrarEstadisticas():
         print("Total de goles:", TotalGoles)
         print("Total de tarjetas amarillas:", TotalTarjetasAmarillas)
         print("Total de tarjetas rojas:", TotalTarjetasRojas)
+
 
         PromedioGoles = TotalGoles / TotalPartidos
         print("Promedio de goles por partido:", round(PromedioGoles, 2))

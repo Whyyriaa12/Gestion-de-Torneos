@@ -117,3 +117,192 @@ def RegistrarPartido():
         MostrarEquipos()
 
         Nombre1 = pedir_texto("\nPrimer equipo: ")
+        Nombre2 = pedir_texto("Segundo equipo: ")
+
+        Pos1 = BuscarEquipo(Nombre1)
+        Pos2 = BuscarEquipo(Nombre2)
+
+        if Pos1 == -1 or Pos2 == -1:
+            print("Equipo inexistente.")
+
+        elif Pos1 == Pos2:
+            print("No puede jugar contra si mismo.")
+
+        else:
+            print("\nDatos de", Equipos[Pos1]["NEquipo"])
+            Goles1 = pedir_entero("Goles equipo 1: ", 0)
+            Amarillas1 = pedir_entero("Tarjetas amarillas equipo 1: ", 0)
+            Rojas1 = pedir_entero("Tarjetas rojas equipo 1: ", 0)
+
+            print("\nDatos de", Equipos[Pos2]["NEquipo"])
+            Goles2 = pedir_entero("Goles equipo 2: ", 0)
+            Amarillas2 = pedir_entero("Tarjetas amarillas equipo 2: ", 0)
+            Rojas2 = pedir_entero("Tarjetas rojas equipo 2: ", 0)
+
+            ActualizarEquipo(Pos1, Goles1, Goles2, Amarillas1, Rojas1)
+            ActualizarEquipo(Pos2, Goles2, Goles1, Amarillas2, Rojas2)
+
+            print("Partido registrado correctamente.")
+
+
+def BuscarDatosEquipo():
+    print("\n--- BUSCAR DATOS DE EQUIPO ---")
+
+    if len(Equipos) == 0:
+        print("No hay equipos registrados.")
+    else:
+        Nombre1 = pedir_texto("Nombre del equipo: ")
+
+        Pos1 = BuscarEquipo(Nombre1)
+
+        if Pos1 == -1:
+            print("Equipo inexistente.")
+        else:
+            print("\nEquipo:", Equipos[Pos1]["NEquipo"])
+            print("Ciudad:", Equipos[Pos1]["Ciudad"])
+            print("Partidos Jugados:", Equipos[Pos1]["Parti"])
+            print("Victorias:", Equipos[Pos1]["Vic"])
+            print("Empates:", Equipos[Pos1]["Emp"])
+            print("Derrotas:", Equipos[Pos1]["Derr"])
+            print("Gol a Favor:", Equipos[Pos1]["GolFav"])
+            print("Gol en Contra:", Equipos[Pos1]["GolCon"])
+            print("Diferencia de Goles:", Equipos[Pos1]["DifGol"])
+            print("Tarjetas Amarillas:", Equipos[Pos1]["TarjA"])
+            print("Tarjetas Rojas:", Equipos[Pos1]["TarjR"])
+            print("PTS:", Equipos[Pos1]["PTS"])
+
+
+def MostrarTabla():
+    print("\n--- TABLA DE POSICIONES ---")
+
+    if len(Equipos) == 0:
+        print("No hay equipos registrados.")
+    else:
+        Tabla = sorted(
+            Equipos,
+            key=lambda Equipo: (
+                Equipo["PTS"],
+                Equipo["DifGol"],
+                Equipo["GolFav"]
+            ),
+            reverse=True
+        )
+
+        print("POS EQUIPO             PJ  VIC EMP DERR GF  GC  DG  TA  TR  PTS")
+        print("---------------------------------------------------------------")
+
+        for i in range(len(Tabla)):
+            Equipo = Tabla[i]
+
+            print(
+                str(i + 1).ljust(3),
+                Equipo["NEquipo"].ljust(18),
+                str(Equipo["Parti"]).rjust(2),
+                str(Equipo["Vic"]).rjust(4),
+                str(Equipo["Emp"]).rjust(3),
+                str(Equipo["Derr"]).rjust(4),
+                str(Equipo["GolFav"]).rjust(2),
+                str(Equipo["GolCon"]).rjust(3),
+                str(Equipo["DifGol"]).rjust(3),
+                str(Equipo["TarjA"]).rjust(3),
+                str(Equipo["TarjR"]).rjust(3),
+                str(Equipo["PTS"]).rjust(4)
+            )
+
+
+def MostrarEstadisticas():
+    print("\n--- ESTADISTICAS GENERALES ---")
+
+    if len(Equipos) == 0:
+        print("No hay datos para mostrar.")
+    else:
+        TotalGoles = 0
+        TotalTarjetasAmarillas = 0
+        TotalTarjetasRojas = 0
+        TotalPartidosContados = 0
+
+        EquipoMasPuntos = Equipos[0]
+        EquipoMasGoleador = Equipos[0]
+        EquipoMasTarjetasRojas = Equipos[0]
+
+        for Equipo in Equipos:
+            TotalGoles = TotalGoles + Equipo["GolFav"]
+            TotalTarjetasAmarillas = TotalTarjetasAmarillas + Equipo["TarjA"]
+            TotalTarjetasRojas = TotalTarjetasRojas + Equipo["TarjR"]
+            TotalPartidosContados = TotalPartidosContados + Equipo["Parti"]
+
+            if Equipo["PTS"] > EquipoMasPuntos["PTS"]:
+                EquipoMasPuntos = Equipo
+
+            if Equipo["GolFav"] > EquipoMasGoleador["GolFav"]:
+                EquipoMasGoleador = Equipo
+
+            if Equipo["TarjR"] > EquipoMasTarjetasRojas["TarjR"]:
+                EquipoMasTarjetasRojas = Equipo
+
+        TotalPartidos = TotalPartidosContados // 2
+
+        print("Cantidad de equipos:", len(Equipos))
+        print("Total de partidos jugados:", TotalPartidos)
+        print("Total de goles:", TotalGoles)
+        print("Total de tarjetas amarillas:", TotalTarjetasAmarillas)
+        print("Total de tarjetas rojas:", TotalTarjetasRojas)
+
+        if TotalPartidos > 0:
+            PromedioGoles = TotalGoles / TotalPartidos
+            print("Promedio de goles por partido:", round(PromedioGoles, 2))
+        else:
+            print("Promedio de goles por partido: 0")
+
+        print("Equipo con mas puntos:", EquipoMasPuntos["NEquipo"])
+        print("Equipo mas goleador:", EquipoMasGoleador["NEquipo"])
+        print("Equipo con mas tarjetas rojas:", EquipoMasTarjetasRojas["NEquipo"])
+
+
+def MostrarMenu():
+    print("\n====================================")
+    print("          GESTION DE TORNEOS")
+    print("====================================")
+    print("1. Registrar equipo")
+    print("2. Mostrar equipos")
+    print("3. Registrar partido")
+    print("4. Buscar datos de equipo")
+    print("5. Mostrar tabla de posiciones")
+    print("6. Mostrar estadisticas generales")
+    print("7. Salir")
+
+
+def Menu():
+    Opcion = 0
+
+    while Opcion != 7:
+        MostrarMenu()
+        Opcion = pedir_entero("Seleccione una opcion: ", 1)
+
+        if Opcion == 1:
+            RegistrarEquipo()
+
+        elif Opcion == 2:
+            MostrarEquipos()
+
+        elif Opcion == 3:
+            RegistrarPartido()
+
+        elif Opcion == 4:
+            BuscarDatosEquipo()
+
+        elif Opcion == 5:
+            MostrarTabla()
+
+        elif Opcion == 6:
+            MostrarEstadisticas()
+
+        elif Opcion == 7:
+            print("Gracias por usar el sistema.")
+
+        else:
+            print("Opcion invalida. Intente nuevamente.")
+
+
+Menu()
+

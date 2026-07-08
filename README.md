@@ -1,19 +1,19 @@
 # Gestion-de-Torneos
 
-Integrantes
+## Integrantes
 
 - Gomez Segovia, Ariana
 - Rigassio, Sergio Manque Nehuen
 - Romero, Elías Santiago
 
-Comision D
+## Comision D
 
-Descripción del sistema
+## Descripción del sistema
 
   Este programa consiste en un sistema de gestión de torneos de fútbol amateur que está desarrollado en Python y ejecutado por consola.
   El sistema permite administrar la información de los equipos participantes, registrar partidos y actualizar automáticamente las estadísticas del torneo.
 
-INSTRUCCIONES DE EJECUCION:
+## INSTRUCCIONES DE EJECUCION:
 
 1. Descargar el programa python
 
@@ -25,21 +25,22 @@ INSTRUCCIONES DE EJECUCION:
 
 5. Una vez hecho eso, el usuario elige si quiere mostrar las estadísticas, los equipos, etc, o salir con la opción 7.
 
-Funciones del programa: 
-    Registrar equipos.
-    Mostrar equipos registrados.
-    Registrar partidos.
-    Actualizar automáticamente:
-      Partidos jugados.
-      Victorias.
-      Empates.
-      Derrotas.
-      Goles a favor.
-      Goles en contra.
-      Diferencia de goles.
-      Tarjetas amarillas.
-      Tarjetas rojas.
-       Puntos.
-    Consultar la información de un equipo.
-    Mostrar la tabla de posiciones.
-    Mostrar estadísticas generales del torne
+## Funciones del programa
+
+- Registrar equipos.
+- Mostrar equipos registrados.
+- Registrar partidos.
+- Actualizar automáticamente:
+  - Partidos jugados.
+  - Victorias.
+  - Empates.
+  - Derrotas.
+  - Goles a favor.
+  - Goles en contra.
+  - Diferencia de goles.
+  - Tarjetas amarillas.
+  - Tarjetas rojas.
+  - Puntos.
+- Consultar la información de un equipo.
+- Mostrar la tabla de posiciones.
+- Mostrar estadísticas generales del torneo.
